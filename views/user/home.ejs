@@ -1,0 +1,366 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Hotel</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.ico">
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/css/gijgo.css">
+    <link rel="stylesheet" href="/assets/css/slicknav.css">
+    <link rel="stylesheet" href="/assets/css/animate.min.css">
+    <link rel="stylesheet" href="/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/assets/css/themify-icons.css">
+    <link rel="stylesheet" href="/assets/css/slick.css">
+    <link rel="stylesheet" href="/assets/css/nice-select.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+
+<body>
+
+    <!-- Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <strong>Hotel</b>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+
+    <header>
+        <!-- Header Start -->
+        <div class="header-area header-sticky">
+            <div class="main-header ">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <!-- logo -->
+                        <div class="col-xl-2 col-lg-2">
+                            <div class="logo">
+                                <a href="/"><img src="assets/img/logo/Royal Hotel logo.png" alt="" style="width: 150px; height: auto;"></a>
+                            </div>
+                        </div>
+                        <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10">
+                            <!-- main-menu -->
+                            <div class="main-menu f-right d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a href="/">Home</a></li>
+                                        <% if(user.length){ %>
+                                        <li><a href="/category">Category</a></li>
+                                        <li><a href="/showStatus">Status</a></li>
+                                        <li><a href="/contact">Contact</a></li>
+                                        <li><a href="/logout">Logout</a></li>
+                                        <%  } else { %>
+                                        <li><a href="/login">Login</a></li>
+                                        <li><a href="/createaccount">Create Account</a></li>
+                                        <li><a href="/contact">Contact</a></li>
+                                        <% } %>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+    <main>
+
+        <!-- slider Area Start-->
+        <div class="slider-area ">
+            <!-- Mobile Menu -->
+            <div class="slider-active dot-style">
+                <div class="single-slider  hero-overly slider-height d-flex align-items-center"
+                    data-background="/assets/img/hero/h1_hero.jpg">
+                    <div class="container">
+                        <div class="row justify-content-center text-center">
+                            <div class="col-xl-9">
+                                <div class="h1-slider-caption">
+                                    <h1 data-animation="fadeInUp" data-delay=".4s">top hotel in the city</h1>
+                                    <h3 data-animation="fadeInDown" data-delay=".4s">~ Royal Luxury Hotel ~</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="single-slider  hero-overly slider-height d-flex align-items-center"
+                    data-background="/assets/img/hero/h1_hero.jpg">
+                    <div class="container">
+                        <div class="row justify-content-center text-center">
+                            <div class="col-xl-9">
+                                <div class="h1-slider-caption">
+                                    <h1 data-animation="fadeInUp" data-delay=".4s">top hotel in the city</h1>
+                                    <h3 data-animation="fadeInDown" data-delay=".4s">Hotel & Resourt</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="single-slider  hero-overly slider-height d-flex align-items-center"
+                    data-background="/assets/img/hero/h1_hero.jpg">
+                    <div class="container">
+                        <div class="row justify-content-center text-center">
+                            <div class="col-xl-9">
+                                <div class="h1-slider-caption">
+                                    <h1 data-animation="fadeInUp" data-delay=".4s">top hotel in the city</h1>
+                                    <h3 data-animation="fadeInDown" data-delay=".4s">Hotel & Resourt</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- slider Area End-->
+
+        <!-- Make customer Start-->
+        <section class="make-customer-area customar-padding fix">
+            <div class="container-fluid p-0">
+                <div class="row">
+                    <div class="col-xl-5 col-lg-6">
+                        <div class="customer-img mb-120">
+                            <img src="/assets/img/customer/customar1.png" class="customar-img1" alt="">
+                            <img src="/assets/img/customer/customar2.png" class="customar-img2" alt="">
+                            <div class="service-experience heartbeat">
+                                <h3>25 Years of Service<br>Experience</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-xl-4 col-lg-4">
+                        <div class="customer-caption">
+                            <span>About our company</span>
+                            <h2>Make the customer the hero of our story</h2>
+                            <div class="caption-details" style="width: 200%;">
+                                <p class="pera-dtails">Best Place to Best Experience </p>
+                                <p>The Royal Luxury Hotel, widely regarded as one of Colombo's best city hotels, is well located in the bustling city center and has stunning views of the famous Galle Face Green and the Indian Ocean. The Royal Luxury Hotel offers each and every visitor a refuge of luxury and relaxation, whether they're looking for an opulent getaway, a culinary experience, or a place to celebrate life's significant moments. Discover unparalleled elegance and sophistication at The Royal Luxury Hotel, a serene haven of luxury in the center of Colombo. We take great delight in offering each and every one of our visitors a warm, sincere welcome, regardless of whether they are here on business or for pleasure. The Royal Luxury Hotel stands out from other lodging options in Colombo because to our sincere hospitality and dedication to providing an amazing experience. Please settle in, and we'll take care of the rest.
+                                </p>
+                                <a href="#" class="btn more-btn1">Learn More <i class="ti-angle-right"></i> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Make customer End-->
+
+        <!-- Room Start -->
+
+        <!-- Room End -->
+
+        <!-- Dining Start -->
+        <div class="dining-area dining-padding-top">
+            <!-- Single Left img -->
+            <div class="single-dining-area left-img">
+                <div class="container">
+                    <div class="row justify-content-end">
+                        <div class="col-lg-8 col-md-8">
+                            <div class="dining-caption">
+                                <span>Our resturent</span>
+                                <h3>Dining & Drinks</h3>
+                                <p>At The Royal Luxury Hotel, dining is more than just a meal; it’s an experience. Our master chefs have crafted a diverse menu that blends the finest local ingredients with international culinary flair, offering a gastronomic journey like no other. Whether you crave a vibrant breakfast to start your day, a leisurely lunch, or an intimate dinner, our restaurants cater to every palate.
+
+                                    Relax in the sophisticated ambiance of our bars and lounges, where our skilled mixologists create signature cocktails that perfectly complement the breathtaking views of the Indian Ocean. From classic favorites to bespoke creations, every sip tells a story of luxury and indulgence.</p>
+                                <a href="#" class="btn border-btn">Learn More <i class="ti-angle-right"></i> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- single Right img -->
+            <div class="single-dining-area right-img">
+                <div class="container">
+                    <div class="row justify-content-start">
+                        <div class="col-lg-8 col-md-8">
+                            <div class="dining-caption text-right">
+                                <span>Our Pool</span>
+                                <h3>Swimming Pool</h3>
+                                <p>Unwind and escape to a world of tranquility at The Royal Luxury Hotel’s stunning infinity pool. Overlooking the breathtaking Indian Ocean, our pool offers a serene oasis where you can soak up the sun and enjoy a refreshing dip in the crystal-clear waters.
+
+                                    Surrounded by lush greenery and elegant lounge areas, it’s the perfect spot to rejuvenate after a day of exploring the city. Sip on tropical cocktails or fresh juices from our poolside bar as you bask in the warm glow of the sun. Whether you're taking a leisurely swim or simply lounging with a good book, our pool area promises pure relaxation.</p>
+                                <a href="#" class="btn border-btn">Learn More <i class="ti-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Dining End -->
+
+        <!-- Testimonial Start -->
+
+        <!-- Testimonial End -->
+
+
+        <!-- Gallery img Start-->
+        <div class="gallery-area fix">
+            <div class="container-fluid p-0">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="gallery-active owl-carousel">
+                            <div class="gallery-img">
+                                <a href="#"><img src="/assets/img/gallery/gallery1.jpg" alt=""></a>
+                            </div>
+                            <div class="gallery-img">
+                                <a href="#"><img src="/assets/img/gallery/gallery2.jpg" alt=""></a>
+                            </div>
+                            <div class="gallery-img">
+                                <a href="#"><img src="/assets/img/gallery/gallery3.jpg" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Gallery img End-->
+    </main>
+    <footer>
+        <!-- Footer Start-->
+        <div class="footer-area black-bg footer-padding">
+            <div class="container">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-footer-caption mb-30">
+                            <!-- logo -->
+                            <div class="footer-logo">
+                                <a href="index.html"><img src="/assets/img/logo/fivestar.jpg" alt=""></a>
+                            </div>
+                            <div class="footer-social footer-social2">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fas fa-globe"></i></a>
+                                <a href="#"><i class="fab fa-behance"></i></a>
+                            </div>
+                            <div class="footer-pera">
+                                <p>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    Copyright &copy;
+                                    <script>document.write(new Date().getFullYear());</script> All rights reserved |
+                                    Hotel Management System<i class="ti-heart" aria-hidden="true"></i>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5">
+                        <div class="single-footer-caption mb-30">
+                            <div class="footer-tittle">
+                                <h4>Quick Links</h4>
+                                <ul>
+                                    <li><a href="#">About Royal Luxury Five Star Hotel</a></li>
+                                    <li><a href="#">Our Best Rooms</a></li>
+                                    <li><a href="#">Our Photo Gellary</a></li>
+                                    <li><a href="#">Guest Services</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
+                        <div class="single-footer-caption mb-30">
+                            <div class="footer-tittle">
+                                <h4>Reservations</h4>
+                                <ul>
+                                    <li><a href="#">Tel: 0114562365</a></li>
+                                    <li><a href="#">Phone No:(+94) 11-2544 544</a></li>
+                                    <li><a href="#">Skype: RoyalhotelBooking</a></li>
+                                    <li><a href="#">reservations@royalhotel.com</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4  col-sm-5">
+                        <div class="single-footer-caption mb-30">
+                            <div class="footer-tittle">
+                                <h4>Our Location</h4>
+                                <ul>
+                                    <li><a href="#">No. 64 Lotus Road, Colombo 1</a></li>
+                                    <li><a href="#">Sri Lanka</a></li>
+                                </ul>
+                                <!-- Form -->
+                                <div class="footer-form">
+                                    <div id="mc_embed_signup">
+                                        <form target="_blank"
+                                            action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                                            method="get" class="subscribe_form relative mail_part">
+                                            <input type="email" name="email" id="newsletter-form-email"
+                                                placeholder="Email Address" class="placeholder hide-on-focus"
+                                                onfocus="this.placeholder = ''"
+                                                onblur="this.placeholder = ' Email Address '">
+                                            <div class="form-icon">
+                                                <button type="submit" name="submit" id="newsletter-submit"
+                                                    class="email_icon newsletter-submit button-contactForm"><img
+                                                        src="/assets/img/logo/form-iocn.jpg" alt=""></button>
+                                            </div>
+                                            <div class="mt-10 info"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+    </footer>
+
+    <!-- JS here -->
+
+    <!-- All JS Custom Plugins Link Here here -->
+    <script src="/assets/js/vendor/modernizr-3.5.0.min.js"></script>
+
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="/assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="/assets/js/jquery.slicknav.min.js"></script>
+
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="/assets/js/owl.carousel.min.js"></script>
+    <script src="/assets/js/slick.min.js"></script>
+    <!-- Date Picker -->
+    <script src="/assets/js/gijgo.min.js"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="/assets/js/wow.min.js"></script>
+    <script src="/assets/js/animated.headline.js"></script>
+    <script src="/assets/js/jquery.magnific-popup.js"></script>
+
+    <!-- Scrollup, nice-select, sticky -->
+    <script src="/assets/js/jquery.scrollUp.min.js"></script>
+    <script src="/assets/js/jquery.nice-select.min.js"></script>
+    <script src="/assets/js/jquery.sticky.js"></script>
+
+    <!-- contact js -->
+    <script src="/assets/js/contact.js"></script>
+    <script src="/assets/js/jquery.form.js"></script>
+    <script src="/assets/js/jquery.validate.min.js"></script>
+    <script src="/assets/js/mail-script.js"></script>
+    <script src="/assets/js/jquery.ajaxchimp.min.js"></script>
+
+    <!-- Jquery Plugins, main Jquery -->
+    <script src="/assets/js/plugins.js"></script>
+    <script src="/assets/js/main.js"></script>
+
+</body>
+
+</html>
