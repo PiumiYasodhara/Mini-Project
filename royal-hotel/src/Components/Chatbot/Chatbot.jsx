@@ -12,7 +12,6 @@ const Chatbot = () => {
     ]);
     const [showChatbot, setShowChatbot] = useState(false);
 
-    const API_KEY = "sk-proj-abPTya3McfuBMfPY224lT3BlbkFJv8HHCHSjU9Gs8bKunv1A";
 
     const handleChat = () => {
         if (!userMessage.trim()) return;
