@@ -1,0 +1,62 @@
+/* Footer.css */
+
+.footer {
+    background-color: #000000;
+    color: white;
+    padding: 20px 0 ;
+    margin-top: 80px;
+    text-align: center;
+}
+
+.about-companies {
+    margin-bottom: 20px;
+}
+
+.about-companies h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.info p {
+    margin: 9px 0;
+}
+
+.company-logos {
+    margin-top: 25px;
+}
+
+.company-logos i {
+    margin: 0 10px;
+    font-size: 34px;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+
+.about-companies .company-logos .fa-instagram:hover {
+    color: #E1306C;
+}
+
+.about-companies .company-logos .fa-facebook:hover {
+    color: #3b5998;
+}
+
+.about-companies .company-logos .fa-youtube:hover {
+    color: #FF0000;
+}
+
+.about-companies .company-logos .fa-twitter:hover {
+    color: #1DA1F2;
+}
+
+.about-companies .company-logos .fa-whatsapp:hover {
+    color: #25D366;
+}
+
+.copyright {
+    margin-top: 30px;
+    font-size: 14px;
+    border-top: 2px solid #ffffff;
+    /* Top border to separate content */
+    padding-top: 20px;
+}
