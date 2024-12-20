@@ -13,6 +13,7 @@ const Home = () => {
       <About/>
       <Ourmission/>
       <Photo/>
+      <Choose/>
 
     </div>
   )
