@@ -12,6 +12,7 @@ const Home = () => {
       <Slider/>
       <About/>
       <Ourmission/>
+      <Photo/>
 
     </div>
   )

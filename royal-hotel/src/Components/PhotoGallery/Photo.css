@@ -1,0 +1,59 @@
+.photo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 40px 20px 0 20px;
+
+}
+
+.photo .heading {
+    width: 50%;
+    padding-bottom: 50px;
+}
+
+.photo .heading h3 {
+    font-size: 3em;
+    font-weight: bolder;
+    padding-bottom: 10px;
+    border-bottom: 3px solid black;
+
+}
+
+.photo .heading h3 span {
+    font-weight: 100;
+
+}
+
+.photo .box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.photo .box .dream {
+    display: flex;
+    flex-direction: column;
+    width: 32.5%;
+}
+
+
+
+.photo .box .dream img {
+    width: 100%;
+    padding-bottom: 10px;
+    border-radius: 5px ;
+
+}
+
+@media (max-width: 769px) {
+    .photo .box {
+        flex-direction: column;
+    }
+
+    .photo .box .dream {
+        width: 100%;
+    }
+}
