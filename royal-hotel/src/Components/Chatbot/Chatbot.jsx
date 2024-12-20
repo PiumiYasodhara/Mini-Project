@@ -28,44 +28,7 @@ const Chatbot = () => {
         }, 600);
     };
 
-    const generateResponse = (incomingMessage) => {
-        const API_URL = "https://api.openai.com/v1/chat/completions";
-        const requestOptions = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${API_KEY}`
-            },
-            body: JSON.stringify({
-                model: "gpt-3.5-turbo",
-                messages: [{ role: "user", content: incomingMessage.message }]
-            })
-        };
-
-        fetch(API_URL, requestOptions)
-            .then(res => res.json())
-            .then(data => {
-                const responseMessage = data.choices[0].message.content;
-                setChatMessages(prevMessages => {
-                    const updatedMessages = [...prevMessages];
-                    updatedMessages[updatedMessages.length - 1] = {
-                        message: responseMessage,
-                        type: "incoming"
-                    };
-                    return updatedMessages;
-                });
-            })
-            .catch(() => {
-                setChatMessages(prevMessages => {
-                    const updatedMessages = [...prevMessages];
-                    updatedMessages[updatedMessages.length - 1] = {
-                        message: "Oops! Something went wrong. Please try again.",
-                        type: "incoming"
-                    };
-                    return updatedMessages;
-                });
-            });
-    };
+    
 
     const toggleChatbot = () => {
         if (showChatbot) {
