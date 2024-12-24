@@ -12,6 +12,7 @@ app.set("views", "views");
 const userRouter = require("./routes/user");
 const adminRouter = require("./routes/admin");
 const chatRouter = require("./routes/chat");
+const fileuploadRouter = require("./routes/fileupload");
 
 app.use(
   session({
@@ -27,5 +28,6 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use(userRouter);
 app.use("/admin", adminRouter);
 app.use(chatRouter);
+app.use(fileuploadRouter);
 
 app.listen(3000, () => console.log("Server is Running..."));
