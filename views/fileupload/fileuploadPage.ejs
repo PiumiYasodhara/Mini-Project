@@ -21,12 +21,7 @@
 
       <!-- Upload Form Section -->
       <div class="p-6 space-y-6 flex-1 overflow-y-auto">
-        <form
-          action="/upload"
-          method="POST"
-          enctype="multipart/form-data"
-          class="space-y-4"
-        >
+        <form id="uploadForm" class="space-y-4">
           <div>
             <label for="file" class="block text-sm font-medium text-gray-300"
               >Upload File</label
@@ -34,8 +29,7 @@
             <input
               type="file"
               name="file"
-              id="file"
-              required
+              id="fileInput"
               class="mt-2 w-full p-4 bg-gray-700 text-white outline-none placeholder-gray-400 border border-gray-600 rounded-md"
             />
           </div>
@@ -45,14 +39,14 @@
             >
             <textarea
               name="info"
-              id="info"
+              id="textInput"
               rows="4"
-              required
               class="mt-2 w-full p-4 bg-gray-700 text-white outline-none placeholder-gray-400 border border-gray-600 rounded-md"
               placeholder="Type some information here..."
             ></textarea>
           </div>
           <div class="flex justify-end">
+            <!--fires submit event  -->
             <button
               type="submit"
               class="bg-blue-500 px-6 py-3 text-white font-medium rounded-md hover:bg-blue-600"
@@ -70,5 +64,46 @@
         </p>
       </div>
     </div>
+
+    <script>
+      document
+        .getElementById("uploadForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const textInput = document.getElementById("textInput").value;
+          const fileInput = document.getElementById("fileInput").files[0];
+
+          // if (!fileInput) {
+          //   alert("Please upload a PDF file.");
+          //   return;
+          // }
+
+          const formData = new FormData();
+          formData.append("text", textInput);
+          formData.append("file", fileInput);
+
+          try {
+            const response = await fetch("/fileupload", {
+              method: "POST",
+              body: formData,
+            });
+
+            const result = await response.json();
+
+            document.getElementById("responseMessage").textContent =
+              result.message || "Upload successful!";
+            document
+              .getElementById("responseMessage")
+              .classList.add("text-green-500");
+          } catch (error) {
+            document.getElementById("responseMessage").textContent =
+              "An error occurred while uploading.";
+            document
+              .getElementById("responseMessage")
+              .classList.add("text-red-500");
+          }
+        });
+    </script>
   </body>
 </html>

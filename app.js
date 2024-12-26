@@ -8,6 +8,10 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", "views");
 
+const multer = require("multer");
+const upload = multer();
+app.use(upload.any());
+
 //own module
 const userRouter = require("./routes/user");
 const adminRouter = require("./routes/admin");
@@ -22,7 +26,8 @@ app.use(
   })
 );
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static(path.join(__dirname, "/public")));
 
 app.use(userRouter);

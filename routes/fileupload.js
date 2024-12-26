@@ -11,6 +11,9 @@ const fileuploadControler = require("../controllers/fileupload");
 //   .post(userControler.postLogin); // post request for login
 
 // when the url is /chat, control the behavior (what to show), through the chatControler's getChat function
-router.get("/fileupload", fileuploadControler.getFileupload);
+router
+  .route("/fileupload")
+  .get(fileuploadControler.getFileupload)
+  .post(fileuploadControler.postFileupload);
 
 module.exports = router;
