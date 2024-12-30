@@ -2,16 +2,22 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const session = require("express-session");
+require("dotenv").config({ path: ".env.local" });
 
 const app = express();
 
 app.set("view engine", "ejs");
 app.set("views", "views");
 
+const multer = require("multer");
+const upload = multer();
+app.use(upload.any());
+
 //own module
 const userRouter = require("./routes/user");
 const adminRouter = require("./routes/admin");
 const chatRouter = require("./routes/chat");
+const fileuploadRouter = require("./routes/fileupload");
 
 app.use(
   session({
@@ -21,11 +27,13 @@ app.use(
   })
 );
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static(path.join(__dirname, "/public")));
 
 app.use(userRouter);
 app.use("/admin", adminRouter);
 app.use(chatRouter);
+app.use(fileuploadRouter);
 
 app.listen(3000, () => console.log("Server is Running..."));
