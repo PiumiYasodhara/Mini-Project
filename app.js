@@ -19,6 +19,8 @@ const adminRouter = require("./routes/admin");
 const chatRouter = require("./routes/chat");
 const fileuploadRouter = require("./routes/fileupload");
 
+app.use(express.static(path.join(__dirname, "/public")));
+
 app.use(
   session({
     secret: "secret",
