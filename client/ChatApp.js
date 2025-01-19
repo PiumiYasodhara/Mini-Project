@@ -1,25 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
+import React, { useEffect } from "react";
+// import ReactDOM from "react-dom/client";
 import { useState } from "react";
-
-// import { Pinecone } from "@pinecone-database/pinecone";
-// import { vectorize } from "../utils/vectorize";
-// import { retrieveFromPinecone } from "../utils/retrieve-from-pinecone";
-
-const { OpenAIEmbeddings } = require("@langchain/openai");
-
-const embeddings = new OpenAIEmbeddings({
-  apiKey: process.env.OPENAI_API_KEY, // In Node.js defaults to process.env.OPENAI_API_KEY
-  batchSize: 512, // Default value if omitted is 512. Max is 2048
-  model: "text-embedding-3-small",
-});
-
-async function vectorize(text) {
-  const singleVector = await embeddings.embedQuery(text);
-
-  // console.log(singleVector.slice(0, 100));
-  return singleVector;
-}
+import axios from "axios";
 
 const ChatApp = () => {
   const [lastHumanMessage, setLastHumanMessage] = useState(null);
@@ -28,7 +10,7 @@ const ChatApp = () => {
 
   const [retrievedPineconeData, setRetrievedPineconeData] = useState({});
 
-  const handleClick = () => {
+  const handleClick = async () => {
     setLastHumanMessage(inputMessage);
     setInputMessage("");
     setMessegeSent(true);
@@ -45,6 +27,27 @@ const ChatApp = () => {
     //       console.log(err);
     //     });
   };
+
+  useEffect(() => {
+    try {
+      axios.post("/vectorize", { text: inputMessage })
+      .then((response) => {
+        console.log("human message vectorized:", response.data);
+
+        axios.post("/retrieve", { text: response.data }).
+        then((response) => {
+          console.log("Retrieved data: ", response.data);
+        }).catch((error) => {
+          console.error(error);
+        });
+
+      }).catch((error) => {
+        console.error(error);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }, [lastHumanMessage]);
 
   return (
     <div class="w-full md:w-1/2 shadow-lg rounded-lg overflow-hidden bg-gray-800 flex flex-col h-[90vh]">
@@ -98,6 +101,9 @@ const ChatApp = () => {
     </div>
   );
 };
+
+export default ChatApp;
+
 
 // Use ReactDOM.createRoot instead of ReactDOM.render
 // const rootElement = document.getElementById("react-root");

@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const session = require("express-session");
-require("dotenv").config({ path: ".env.local" });
+require("dotenv").config();
 
 const app = express();
 
@@ -18,8 +18,8 @@ const userRouter = require("./routes/user");
 const adminRouter = require("./routes/admin");
 const chatRouter = require("./routes/chat");
 const fileuploadRouter = require("./routes/fileupload");
-
-app.use(express.static(path.join(__dirname, "/public")));
+const vectorizeRouter = require("./routes/vectorize");
+const retrieveRouter = require("./routes/retrieveFromPineconeRoute");
 
 app.use(
   session({
@@ -31,7 +31,12 @@ app.use(
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(vectorizeRouter);
+app.use(retrieveRouter);
+
 app.use(express.static(path.join(__dirname, "/public")));
+
 
 app.use(userRouter);
 app.use("/admin", adminRouter);

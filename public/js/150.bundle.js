@@ -1,1 +1,1 @@
-"use strict";(self.webpackChunkhotelmanagment=self.webpackChunkhotelmanagment||[]).push([[150],{2150:(e,n,a)=>{a.r(n),a(6540),a(5338),new(0,a(4627).OpenAIEmbeddings)({apiKey:process.env.OPENAI_API_KEY,batchSize:512,model:"text-embedding-3-small"})}}]);
+"use strict";(self.webpackChunkhotelmanagment=self.webpackChunkhotelmanagment||[]).push([[150],{150:(e,a,n)=>{n.r(a),n(540)}}]);
