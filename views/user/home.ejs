@@ -27,6 +27,20 @@
 </head>
 
 <body>
+    <script>
+
+        (function(d, t) {
+        var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+        v.onload = function() {
+          window.voiceflow.chat.load({
+            verify: { projectID: '679caa2370ab084b28cdcbf4' },
+            url: 'https://general-runtime.voiceflow.com',
+            versionID: 'production'
+          });
+        }
+        v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+    })(document, 'script');
+    </script>
 <!--<script>
         window.embeddedChatbotConfig = {
             chatbotId: "8TtXIl2Kz1triWuhiGD7_",
