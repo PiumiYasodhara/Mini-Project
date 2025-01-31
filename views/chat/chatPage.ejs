@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChatGPT Interface</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="bg-gray-900 text-white flex items-center justify-center min-h-screen"
+  >
+    <div
+      class="w-full max-w-3xl shadow-lg rounded-lg overflow-hidden bg-gray-800 flex flex-col h-[90vh]"
+    >
+      <!-- Chat Header -->
+      <div class="bg-gray-700 px-6 py-4 border-b border-gray-600">
+        <h1 class="text-xl font-semibold">Royal Lux Hotel</h1>
+      </div>
+
+      <!-- Chat Messages Area -->
+      <div id="chat-box" class="flex-1 overflow-y-auto p-6 space-y-4">
+        <!-- Example Messages -->
+        <div class="flex items-start">
+          <div class="bg-gray-700 p-4 rounded-lg max-w-[75%]">
+            <p>Hello! How can I help you today?</p>
+          </div>
+        </div>
+
+        <div class="flex items-start justify-end">
+          <div class="bg-blue-500 p-4 rounded-lg max-w-[75%]">
+            <p>I need assistance with my project.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input Section -->
+      <form class="border-t border-gray-600 flex" action="/send" method="POST">
+        <input
+          type="text"
+          name="message"
+          placeholder="Type a message..."
+          class="w-full p-4 bg-gray-700 text-white outline-none placeholder-gray-400"
+        />
+        <button
+          type="submit"
+          class="bg-blue-500 px-6 py-4 text-white hover:bg-blue-600"
+        >
+          Send
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
