@@ -1,99 +1,125 @@
-import React, { useEffect } from "react";
-// import ReactDOM from "react-dom/client";
-import { useState } from "react";
+// At the top of the file, add a new state for chat messages
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const ChatApp = () => {
-  const [lastHumanMessage, setLastHumanMessage] = useState(null);
-  const [messegeSent, setMessegeSent] = useState(false);
+  const [messages, setMessages] = useState([
+    {
+      id: 1,
+      sender: "assistant",
+      text:
+        "Hello and welcome to Royal Luxury Hotel! ✨\nI’m your virtual assistant. How can I assist you today?",
+    },
+  ]);
+
   const [inputMessage, setInputMessage] = useState("");
 
-  const [retrievedPineconeData, setRetrievedPineconeData] = useState({});
-
-  const handleClick = async () => {
-    setLastHumanMessage(inputMessage);
-    setInputMessage("");
-    setMessegeSent(true);
-
-    //   vectorize(inputMessage)
-    //     .then((vector) => {
-    //       console.log("Retrieved vector is: ", vector);
-    //       // retrieveFromPinecone(vector).then((data) => {
-    //       //   setRetrievedPineconeData(data);
-    //       //   console.log("Retrieved data: ", data);
-    //       // });
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
+  // function to add a new message, e.g. the asked question
+  const addMessage = (text) => {
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      {
+        id: Date.now(),
+        sender: "user",
+        text
+      },
+    ]);
   };
 
-  useEffect(() => {
+  const handleClick = async () => {
+    const userQuestion = inputMessage; // store the current question
+    addMessage(inputMessage); // function to add the message to chatMessages
+    setInputMessage(""); // clear the input
+
+    // 0. Insert animated dots placeholder for assistant message
+    setMessages(prev => [
+      ...prev,
+      {
+        sender: "assistant",
+        text: (
+          <span className="flex space-x-1">
+            <span className="animate-bounce">.</span>
+            <span className="animate-bounce delay-150">.</span>
+            <span className="animate-bounce delay-300">.</span>
+          </span>
+        )
+      }
+    ]);
+
     try {
-      axios.post("/vectorize", { text: inputMessage })
-      .then((response) => {
-        console.log("human message vectorized:", response.data);
+      // 1. Vectorize the user question
+      const vecResponse = await axios.post("/vectorize", { text: userQuestion });
+      const vector = vecResponse.data;
 
-        axios.post("/retrieve", { text: response.data }).
-        then((response) => {
-          console.log("Retrieved data: ", response.data);
-        }).catch((error) => {
-          console.error(error);
-        });
+      // 2. Retrieve the context from Pinecone
+      const retrieveResponse = await axios.post("/retrieve", { text: vector });
+      const matches = retrieveResponse.data.retrievedVectorAndMetadata.matches;
+      let context = "";
+      if (matches && matches.length > 0) {
+        // Get the top two match texts
+        const topMatches = matches.slice(0, 2);
+        context = topMatches.map(match => match.metadata.text).join("\n");
+      }
 
-      }).catch((error) => {
-        console.error(error);
+      // 3. Call augment endpoint using question and context
+      const augmentResponse = await axios.post("/augment", {
+        question: userQuestion,
+        context: context
       });
-    } catch (error) {
-      console.error(error);
+      const answer = augmentResponse.data.answer; // assuming response contains the ChatGPT answer in 'answer'
+
+      // 4. Remove animated dots and then Append user question and assistant answer into chatMessages
+      setMessages(prev => {
+        const newMessages = [...prev];
+        newMessages.pop(); // remove the animated dots
+        return [
+          ...newMessages,
+          { sender: "assistant", text: answer }
+        ];
+      });
+    } catch (err) {
+      console.error(err);
     }
-  }, [lastHumanMessage]);
+  };
 
   return (
-    <div class="w-full md:w-1/2 shadow-lg rounded-lg overflow-hidden bg-gray-800 flex flex-col h-[90vh]">
-      {/* <!-- Chat Header --> */}
-      <div class="bg-gray-700 px-6 py-4 border-b border-gray-600">
-        <h1 class="text-xl font-semibold">Royal Lux Hotel-GuestGenius</h1>
+    <div className="w-full md:w-1/2 shadow-lg rounded-lg overflow-hidden bg-gray-800 flex flex-col h-[90vh]">
+      {/* Chat Header */}
+      <div className="bg-gray-700 px-6 py-4 border-b border-gray-600">
+        <h1 className="text-xl font-semibold">Royal Lux Hotel-GuestGenius</h1>
       </div>
 
-      {/* <!-- Chat Messages Area --> */}
-      <div id="chat-box" class="flex-1 overflow-y-auto p-6 space-y-4">
-        {/* <!-- Example Messages --> */}
-        <div class="flex items-start">
-          <div class="bg-[#B3882D] text-black p-3 rounded-lg">
-            <p>
-              Hello and welcome to Royal Luxury Hotel! ✨<br /> I’m your virtual
-              assistant. How can I assist you today?
-            </p>
+      {/* Chat Messages Area */}
+      <div id="chat-box" className="flex-1 overflow-y-auto p-6 space-y-4">
+        {messages.map((msg, index) => (
+          <div
+            key={index}
+            className={`mb-2 p-2 rounded-md ${msg.sender === "user"
+              ? "ml-auto bg-gray-600 text-white rounded-lg text-right w-fit px-2"
+              : "bg-[#B3882D] text-black rounded-lg text-left w-fit px-2"
+              }`}
+          >
+            {msg.text}
           </div>
-        </div>
-
-        {messegeSent == true && (
-          <div class="flex items-start justify-end">
-            <div class="bg-[#F4E1C1] text-black p-4 rounded-lg">
-              <p>{lastHumanMessage}</p>
-            </div>
-          </div>
-        )}
+        ))}
       </div>
 
-      {/* <!-- Input Section --> */}
-      <div class="border-t border-gray-600 flex">
+      {/* Input Section */}
+      <div className="border-t border-gray-600 flex">
         <input
           type="text"
           name="message"
           placeholder="Type a message..."
-          class="w-full p-4 bg-gray-700 text-white outline-none placeholder-gray-400"
+          className="w-full p-4 bg-gray-700 text-white outline-none placeholder-gray-400"
           onChange={(e) => {
             setInputMessage(e.target.value);
-            console.log(e.target.value);
           }}
           value={inputMessage}
         />
         <button
           type="submit"
-          class="bg-[#B3882D] px-6 py-4 text-white hover:bg-blue-600"
-          onClick={() => handleClick()}
+          className="bg-[#B3882D] px-6 py-4 text-white hover:bg-blue-600"
+          onClick={handleClick}
         >
           Send
         </button>
@@ -103,9 +129,3 @@ const ChatApp = () => {
 };
 
 export default ChatApp;
-
-
-// Use ReactDOM.createRoot instead of ReactDOM.render
-// const rootElement = document.getElementById("react-root");
-// const root = ReactDOM.createRoot(rootElement);
-// root.render(<ChatApp />);

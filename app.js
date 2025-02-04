@@ -20,6 +20,7 @@ const chatRouter = require("./routes/chat");
 const fileuploadRouter = require("./routes/fileupload");
 const vectorizeRouter = require("./routes/vectorize");
 const retrieveRouter = require("./routes/retrieveFromPineconeRoute");
+const augmentRouter = require("./routes/augmentFromAnLLM");
 
 app.use(
   session({
@@ -34,6 +35,7 @@ app.use(express.json());
 
 app.use(vectorizeRouter);
 app.use(retrieveRouter);
+app.use(augmentRouter);
 
 app.use(express.static(path.join(__dirname, "/public")));
 
